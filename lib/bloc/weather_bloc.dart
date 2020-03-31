@@ -31,7 +31,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       } on NetworkError {
         yield WeatherError(message: "Couldn't fetch weather. Is the device online?");
       } catch (e){ 
-        print('error $e');
+        print('error $e'); 
       }
     } else if (event is GetDetailedWeatherEvent) {
       try {
