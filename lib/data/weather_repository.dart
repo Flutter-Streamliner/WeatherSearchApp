@@ -11,8 +11,8 @@ class FakeWeatherRepository implements WeatherRepository {
   double cachedTempCelsius;
 
   @override
-  Future<Weather> fetchDetailedWeather(String cityName) {
-    print('fetchDetailedWeather $cityName');
+  Future<Weather> fetchWeather(String cityName) {
+    print('fetchWeather $cityName');
     // Simulate network delay
     return Future.delayed(
       Duration(seconds: 1),
@@ -36,7 +36,8 @@ class FakeWeatherRepository implements WeatherRepository {
   }
 
   @override
-  Future<Weather> fetchWeather(String cityName) {
+  Future<Weather> fetchDetailedWeather(String cityName) {
+    print('fetchDetailedWeather $cityName');
     return Future.delayed(
       Duration(seconds: 1),
       () {

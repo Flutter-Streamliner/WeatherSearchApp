@@ -21,13 +21,17 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   Stream<WeatherState> mapEventToState(
     WeatherEvent event,
   ) async* {
-    yield WeatherLoading();
+    
+    
     if (event is GetWeatherEvent) {
       try {
+        yield WeatherLoading();
         final weather = await weatherRepository.fetchWeather(event.cityName);
         yield WeatherLoaded(weather: weather);
       } on NetworkError {
         yield WeatherError(message: "Couldn't fetch weather. Is the device online?");
+      } catch (e){ 
+        print('error $e');
       }
     } else if (event is GetDetailedWeatherEvent) {
       try {

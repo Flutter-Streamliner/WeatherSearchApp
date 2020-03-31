@@ -23,12 +23,13 @@ class WeatherSearchPage extends StatelessWidget {
           },
           child: BlocBuilder<WeatherBloc, WeatherState>(
             builder: (context, state) {
-              print('state $state');
               if (state is WeatherInitial) return buildInitialInput();
               else if (state is WeatherLoading) return buildLoading();
               else if (state is WeatherLoaded) return buildColumnWithData(context, state.weather);
               else if (state is WeatherError) return buildInitialInput();
-              else return buildInitialInput();
+              else {
+                return buildInitialInput();
+              }
             },
           ),
         ),
@@ -92,7 +93,6 @@ class CityInputField extends StatelessWidget {
   }
 
   void submitCityName(BuildContext context, String cityName) {
-    print('submitCityName $cityName');
     final weatherBloc = BlocProvider.of<WeatherBloc>(context);
     weatherBloc.add(GetWeatherEvent(cityName: cityName));
   }
